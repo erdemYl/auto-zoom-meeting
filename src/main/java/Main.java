@@ -9,6 +9,10 @@ public class Main {
     private static Process joinProc;
 
 
+    /** Command writer for cmd process */
+    private static BufferedWriter cmdWriter;
+
+
     /** Converted current date to hh:mm */
     private static Date nowH;
 
@@ -28,14 +32,13 @@ public class Main {
     public static void main(String[] args) {
         // init calendar
         calendar.setTime(now);
-        int weekday = calendar.get(Calendar.DAY_OF_WEEK);
 
         try {
             // find meetings
             List<Meeting> meetings = getMeetings(new File(args[0]));
 
             // join if available
-            getAvailableFrom(meetings, weekday).ifPresent(
+            getAvailableFrom(meetings).ifPresent(
                     Main::join
             );
         } catch (FileNotFoundException ignored) {}
@@ -73,7 +76,7 @@ public class Main {
     }
 
 
-    private static Optional<Meeting> getAvailableFrom(List<Meeting> meetings, int weekday) {
+    private static Optional<Meeting> getAvailableFrom(List<Meeting> meetings) {
         try {
             // current date to hour
             nowH = formatter.parse(formatter.format(now));
@@ -123,11 +126,11 @@ public class Main {
         try {
             if (joinProc == null) {
                 joinProc = Runtime.getRuntime().exec("cmd");
+                cmdWriter = new BufferedWriter(new OutputStreamWriter(joinProc.getOutputStream()));
             }
-            BufferedWriter writer = joinProc.outputWriter();
-            writer.write(cmd);
-            writer.newLine();
-            writer.flush();
+            cmdWriter.write(cmd);
+            cmdWriter.newLine();
+            cmdWriter.flush();
         } catch (IOException ignored) {}
     }
 
