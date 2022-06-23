@@ -1,7 +1,7 @@
 Auto-Login/Logout für Zoom (Win)
 =========================================
 
-Java-Programm für automatisierten Log-in/Log-out zur Teilnahme an Besprechungen via Zoom.
+Java-Programm für automatisierten Log-in/Log-out zur Teilnahme an Besprechungen via Zoom. Das Programm ist als `.exe`-Anwendung auszuführen.
 
 
 # Information
@@ -12,10 +12,11 @@ Java-Programm für automatisierten Log-in/Log-out zur Teilnahme an Besprechungen
 
 
 # Installation
-* Erwerben Sie die `jar`-Datei auf dieser Seite, oder das Projekt selbst `build`en.
+* Erwerben Sie die `exe`-Datei auf dieser Seite, oder das Projekt selbst `build`en.
 * Erstellen Sie Ihre eigene `meetings.txt`-Datei.
 * Erstellen Sie eine Batch-Datei und fügen Sie hinzu:
-  * `javaw -Xmx200m -jar C:\Path\To\Jar C:\Path\To\Meetings`, wobei `jar`-und `meetings.txt`-Dateien können in irgendeinem Folder stehen.
+  * `C:\Path\To\Exe C:\Path\To\Meetings`
+  * Z.B. `C:\...\<name>.exe C:\...\<name>.txt`
 
 * Drücken Sie die `windows-Taste` und `R`. Führen Sie dort `shell:startup` aus.
 * Fügen Sie die Batch-Datei diesem Ordner hinzu.
